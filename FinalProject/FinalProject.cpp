@@ -1,15 +1,15 @@
-
-#include <iostream>;
-#include <list>;
-#include <iterator>;
-#include <list>;
-#include <iomanip>;
-#include <algorithm>;
-#include <numeric>;
+#include <iostream>
+#include <list>
+#include <iterator>
+#include <list>
+#include <iomanip>
+#include <algorithm>
+#include <numeric>
 #include "character.h"
 
 using namespace std;
 
+// Function to allow the player to choose a character class
 Character chooseCharacter()
 {
    string choice;
@@ -25,6 +25,7 @@ Character chooseCharacter()
    return hero;
 }
 
+// Function to create a random character for the opponent
 Character createRandom()
 {
    Character opponent;
@@ -33,6 +34,7 @@ Character createRandom()
    return opponent;
 }
 
+// Function to display the information of a character
 void displayCharacter(Character hero)
 {
    cout << "Name: " << hero.getName() << endl;
@@ -40,13 +42,15 @@ void displayCharacter(Character hero)
    cout << "Armor: " << hero.getArmor() << endl << endl;
 }
 
+// Function to display the health of the player and opponent
 void displayHealth(Character hero, Character opponent)
 {
    cout << "Your health: " << hero.getHP() << endl;
    cout << "Your opponent's health: " << hero.getHP() << endl;
 }
 
-int performRandomAction(Character & hero, Character & opponent)
+// Function to perform a random action for a character on their opponent
+int performRandomAction(Character& hero, Character& opponent)
 {
    int action = rand() % 4 + 1;
    if (action == 1)
@@ -55,21 +59,23 @@ int performRandomAction(Character & hero, Character & opponent)
       cout << endl << hero.getName() << " attacks!\n";
       return 1;
    }
-   else if (action == 2) {
+   else if (action == 2)
+   {
       hero.setDefense(true);
       cout << endl << hero.getName() << " defends!\n";
       return 2;
    }
-   else if (action == 3) {
+   else if (action == 3)
+   {
       hero.heal();
       cout << endl << hero.getName() << " heals!\n";
       return 3;
    }
 }
 
-void displayResults(int attacks, int defends, int heals) 
+// Function to display the results of the battle
+void displayResults(int attacks, int defends, int heals)
 {
-   
    cout << "You attacked " << attacks << " times.\n";
    cout << "You defended " << defends << " times.\n";
    cout << "You healed " << heals << " times.\n";
@@ -111,33 +117,40 @@ int main()
          heroAttacks++;
          performRandomAction(opponent, hero);
       }
-      else if (action == 2) {
+      else if (action == 2)
+      {
          hero.setDefense(true);
          cout << endl << hero.getName() << " defends!\n";
          heroDefends++;
          performRandomAction(opponent, hero);
       }
-      else if (action == 3) {
+      else if (action == 3)
+      {
          hero.heal();
          cout << endl << hero.getName() << " heals!\n";
          heroHeals++;
          performRandomAction(opponent, hero);
       }
-      else if (action == 4) {
+      else if (action == 4)
+      {
          int random = performRandomAction(hero, opponent);
-         if (random == 1) {
+         if (random == 1)
+         {
             heroAttacks++;
          }
-         else if (random == 2) {
+         else if (random == 2)
+         {
             heroDefends++;
          }
-         else if (random == 3) {
+         else if (random == 3)
+         {
             heroHeals++;
          }
          performRandomAction(opponent, hero);
       }
 
-      else if (action == 5) {
+      else if (action == 5)
+      {
          loop = false;
          surrender = true;
          cout << "You've surrendered the game! You lose.\n";
@@ -145,18 +158,21 @@ int main()
       }
       cout << endl;
    }
-   if (!surrender) {
-      if (hero.getHP() <= 0 && opponent.getHP() <= 0) {
+   if (!surrender)
+   {
+      if (hero.getHP() <= 0 && opponent.getHP() <= 0)
+      {
          cout << "It was a tie! Better luck next time!\n";
       }
-      else if (hero.getHP() <= 0) {
+      else if (hero.getHP() <= 0)
+      {
          cout << opponent.getName() << " has won the match! Better luck next time!\n";
          displayResults(heroAttacks, heroDefends, heroHeals);
       }
-      else {
+      else
+      {
          cout << hero.getName() << "has won the match! Congratulations!";
          displayResults(heroAttacks, heroDefends, heroHeals);
       }
    }
-
 }
