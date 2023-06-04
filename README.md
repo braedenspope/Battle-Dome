@@ -4,7 +4,7 @@ This Program is a basic battle simulator, giving the user options for creating a
 
 I created this program for the purpose of expanding on my current knowledge and understanding of the C++ language, and to make a simple game I could enjoy by myself if I ever get bored.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Battle Dome Demo](https://youtu.be/ioMBcG4R2xU)
 
 # Development Environment
 
